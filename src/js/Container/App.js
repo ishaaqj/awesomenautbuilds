@@ -9,7 +9,8 @@ class App extends React.Component {
 
         return(
             <div>
-                <p>asd</p>
+                <p>Yeeerd</p>
+                <p>it works</p>
             </div>
         );
     }

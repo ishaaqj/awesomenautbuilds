@@ -6,7 +6,7 @@ const path = require('path');
 
 
 app.get('/', (req, res) => {
-    res.send(path.join(''))
+    res.send(path.join(__dirname, '/dist/') + 'index.html');
 } )
 
 module.exports = app;
