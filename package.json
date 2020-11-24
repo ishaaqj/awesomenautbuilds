@@ -2,10 +2,11 @@
   "name": "awesomenautbuilds",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production && npm run start",
+    "start": "node server.js",
     "run": "nodejs server.js",
     "dev": "webpack-dev-server --mode development --open"
   },
@@ -21,9 +22,9 @@
   "homepage": "https://github.com/ishaaqj/awesomenautbuilds#readme",
   "devDependencies": {
     "@babel/core": "^7.11.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
-    "babel-loader": "^8.1.0",
     "html-webpack-plugin": "^4.3.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
@@ -34,6 +35,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "babel-loader": "^8.2.1"
   }
 }
