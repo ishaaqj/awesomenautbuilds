@@ -1,16 +1,14 @@
 import React from 'react';
-
+import Banner from './Banner';
+import {Route} from 'react-router-dom';
 
 
 class App extends React.Component {
-
     render(){
-
-
         return(
             <div>
-                <p>Yeeerd</p>
-                <p>it works</p>
+                <Banner/>
+                <Route path="/Awesomenauts" component/>
             </div>
         );
     }
