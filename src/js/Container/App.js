@@ -1,5 +1,5 @@
 import React from 'react';
-import Banner from './Banner';
+import HomePage from '../HomeInfo/Homepage';
 import {Route, Link} from 'react-router-dom';
 import Character from '../Awesomenauts/Character';
 
@@ -8,7 +8,7 @@ class App extends React.Component {
     render(){
         return(
             <div>
-                <Banner/>
+                <HomePage/>
                 <Link to={{
                     pathname: "/Awesomenauts"
                 }}>AwesomeNauts</Link>
