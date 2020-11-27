@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from './Banner';
-import {Route} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
+import Character from '../Awesomenauts/Character';
 
 
 class App extends React.Component {
@@ -8,7 +9,10 @@ class App extends React.Component {
         return(
             <div>
                 <Banner/>
-                <Route path="/Awesomenauts" component/>
+                <Link to={{
+                    pathname: "/Awesomenauts"
+                }}>AwesomeNauts</Link>
+                <Route path="/Awesomenauts" exact component={Character}/>
             </div>
         );
     }

@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 const Character = (props) => {
     return (
         <div>
-            <div>Example: Gnaw</div>
+            <h1>Example: Gnaw</h1>
             <p><span>Health: </span> SomeValue from props</p>
             <p><span>Movement: </span> SomeValue from props</p>
             <p><span>Attack Type: </span> SomeValue from props</p>
@@ -25,3 +25,5 @@ const Character = (props) => {
         </div>
     );
 }
+
+export default Character;
