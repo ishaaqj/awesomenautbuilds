@@ -9,6 +9,7 @@ class App extends React.Component {
         return(
             <div>
                 <HomePage/>
+                <b>TODO: delete this route for more cleaner page</b>
                 <Link to={{
                     pathname: "/Awesomenauts"
                 }}>AwesomeNauts</Link>
