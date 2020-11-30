@@ -3,7 +3,7 @@ import Route from 'react-router-dom';
 import Banner from './Banner';
 import Promo from './Promo';
 import TopGuide from './TopGuide';
-import FeaturedGuides from '../UserGuides/FeaturedGuides';
+import FeaturedGuides from '../User/UserGuides/FeaturedGuides';
 
 class HomePage extends React.Component{
 
