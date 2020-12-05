@@ -11,9 +11,10 @@ class App extends React.Component {
                 <HomePage/>
                 <b>TODO: delete this route for more cleaner page</b>
                 <Link to={{
-                    pathname: "/Awesomenauts"
+                    pathname: "/Awesomenauts/Admiral_Swiggins"
                 }}>AwesomeNauts</Link>
-                <Route path="/Awesomenauts" exact component={Character}/>
+                {/* <Route path="/Awesomenauts" exact component={Character}/> */}
+                <Route path="/Awesomenauts/:id" component={Character}/>
             </div>
         );
     }
