@@ -4,6 +4,7 @@ import Banner from './Banner';
 import Promo from './Promo';
 import TopGuide from './TopGuide';
 import FeaturedGuides from '../User/UserGuides/FeaturedGuides';
+import {Link} from 'react-router-dom';
 
 class HomePage extends React.Component{
 
@@ -37,6 +38,7 @@ class HomePage extends React.Component{
         return(
             <div className="Homepage">
                 <Banner/>
+                <Link to="/Awesomenauts/Admiral_Swiggins">Admiral Swiggins Characternaut </Link>
                 {promoInfo.map(el => {
                     return <Promo picture={el.picture} title={el.title} description={el.description}/>
                 })}
