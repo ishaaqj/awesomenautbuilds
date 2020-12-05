@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Link, withRouter} from 'react-router-dom';
+import Comment from '../User/Comment';
 
 
 const Character = (props) => {
@@ -53,7 +54,7 @@ const Character = (props) => {
     // case: current index is first page in which case, go to last page
     if (characterIndex === 0) navigationLink.prev = characterArr.length -1;
     // case: current index is last page so go to first page
-    if (characterIndex === characterArr.length) navigationLink.next = 0;
+    if (characterIndex + 1 === characterArr.length) navigationLink.next = 0;
 
 
 
@@ -82,7 +83,7 @@ const Character = (props) => {
             <br />
             <br />
             <Link to={{pathname: `/Awesomenauts/${characterArr[navigationLink.next]}`}}>Next</Link>
-            {/* TODO: Insert Leave comment Section */}
+            <Comment />
 
 
         </div>
