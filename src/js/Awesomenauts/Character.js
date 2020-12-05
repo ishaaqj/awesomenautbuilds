@@ -51,9 +51,25 @@ const Character = (props) => {
             bio: "lorem ipsum lol"
         }
     }
+    const characterArr = Object.keys(characters);
+    const characterIndex = characterArr.indexOf(props.match.params.id);
+
+    // Values to to link for routing to prev and next character
+    // Take case of prev and next link before if statement corrects for cases
+    let navigationLink = {prev: characterIndex - 1, next: characterIndex + 1}
+    // case: current index is first page in which case, go to last page
+    if (characterIndex === 0) navigationLink.prev = characterArr.length -1;
+    // case: current index is last page so go to first page
+    if (characterIndex === characterArr.length) navigationLink.next = 0;
+
+
 
     const charParam = characters[props.match.params.id];
     // For now put information of characters like health, movement etc. in client side. Later in postgres
+
+    // Turn object to array, loop through array for index, i-1, i+1 to route
+    // note: Object.keys will return the names of the characters object which will correcpond to the route uri paramter
+    const characterIndex = Object.keys(characters).indexOf(props.match.params.id);
     return (
         <div>
 
@@ -71,12 +87,13 @@ const Character = (props) => {
             <p>{charParam.bio}</p>
 
 
-            {/* TopGuides component but more than one */}
-            <p>{"\n\n"}COMPNENT THAT TAKES DATA FROM USERS</p>
-            {/* Insert route here to other characters in order (need redux)*/}
-            {/* Insert Leave comment Section */}
-            {/* First serach for character then output links accordingly */}
-            {/* Two links to link to other character */}
+            {/* TODO: TopGuides component but more than one */}
+            <p>{"\n\n"}COMPONENT THAT TAKES DATA FROM USERS</p>
+            {/* TODO: Insert route here to other characters in order (need redux)*/}
+            {/* TODO: First serach for character then output links accordingly */}
+            {/* TODO: Two links to link to other character */}
+            {/* TODO: Insert Leave comment Section */}
+
 
         </div>
     );
