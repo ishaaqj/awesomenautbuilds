@@ -14,7 +14,8 @@ const Character = (props) => {
             attack_type: "Melee",
             role: "Initiator",
             abilities: [ 'Stun', 'Blind', 'Shield', 'Damage Over Time', 'Area of Effect' ],
-            unlocked_level: 0
+            unlocked_level: 0,
+            bio: "lorem ipsum lol"
         },
         Ayla: {
             name: "Ayla",
@@ -33,7 +34,8 @@ const Character = (props) => {
                 'Shield',
                 'Slow'
               ],
-            unlocked_level: 18
+            unlocked_level: 18,
+            bio: "lorem ipsum lol"
         },
         Clunk: {
             name: "Clunk",
@@ -45,24 +47,28 @@ const Character = (props) => {
             attack_type: "Medium",
             role: "Tank",
             abilities: [ 'Lifesteal', 'Area of effect', 'Ensnare', 'Slow', 'Launch String' ],
-            unlocked_level: 3
+            unlocked_level: 3,
+            bio: "lorem ipsum lol"
         }
     }
+
+    const charParam = characters[props.match.params.id];
     // For now put information of characters like health, movement etc. in client side. Later in postgres
     return (
         <div>
-            <h1>{props.match.params.id}</h1>
-            <p><span>Health: </span> SomeValue from props</p>
-            <p><span>Movement: </span> SomeValue from props</p>
-            <p><span>Attack Type: </span> SomeValue from props</p>
-            <p><span>Role: </span> SomeValue from props</p>
-            <p><span>Type of abilities: </span> SomeValue from props</p>
-            <p><span>Unlocked: </span> SomeValue from props</p>
 
-            <p>{"\n\n"}POSSIBLY COMPONENT THAT USES THE CHARACTER FEATURES/PACKS</p>
+            <h1>{charParam.name}</h1>
+            <p><span>Health: </span> {`${charParam.health.regular} (${charParam.health.alt})`}</p>
+            <p><span>Movement: </span>{charParam.movement}</p>
+            <p><span>Attack Type: </span>{charParam.attack_type}</p>
+            <p><span>Role: </span>{charParam.role}</p>
+            <p><span>Type of abilities: </span>{charParam.abilities.join(", ")}</p>
+            {charParam.unlocked_level != 0 ? <p><span>Unlocked: </span> {charParam.unlocked_level}</p> : null}
 
-            <h1>Example: Gnaw Bio</h1>
-            <p>lorem ipsum</p>
+            <p>{"\n\n"} Dynamically generated pictures of packs the character uses</p>
+
+            <h1>{charParam.name}'s Bio:</h1>
+            <p>{charParam.bio}</p>
 
 
             {/* TopGuides component but more than one */}
