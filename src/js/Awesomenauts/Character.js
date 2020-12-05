@@ -50,9 +50,8 @@ const Character = (props) => {
     }
     // For now put information of characters like health, movement etc. in client side. Later in postgres
     return (
-        // Props: name -> abilities, bio, health etc.
         <div>
-            <h1>Example: Gnaw</h1>
+            <h1>{props.match.params.id}</h1>
             <p><span>Health: </span> SomeValue from props</p>
             <p><span>Movement: </span> SomeValue from props</p>
             <p><span>Attack Type: </span> SomeValue from props</p>

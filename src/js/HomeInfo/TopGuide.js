@@ -2,7 +2,7 @@ import React from 'react';
 
 const TopGuide = (props) => {
     return (
-        <div class="featured" style={{border: "solid black"}}>
+        <div className="featured" style={{border: "solid black"}}>
             <h3>Top Guide</h3>
             <div className="featuredUser">{props.user}</div>
             <div className="featuredPicture">{props.picture}</div>
