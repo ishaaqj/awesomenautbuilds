@@ -65,11 +65,7 @@ const Character = (props) => {
 
 
     const charParam = characters[props.match.params.id];
-    // For now put information of characters like health, movement etc. in client side. Later in postgres
 
-    // Turn object to array, loop through array for index, i-1, i+1 to route
-    // note: Object.keys will return the names of the characters object which will correcpond to the route uri paramter
-    const characterIndex = Object.keys(characters).indexOf(props.match.params.id);
     return (
         <div>
 
@@ -93,6 +89,10 @@ const Character = (props) => {
             {/* TODO: First serach for character then output links accordingly */}
             {/* TODO: Two links to link to other character */}
             {/* TODO: Insert Leave comment Section */}
+            <Link to={{pathname: `/Awesomenauts/${characterArr[navigationLink.prev]}`}}>Prev</Link>
+            <br />
+            <br />
+            <Link to={{pathname: `/Awesomenauts/${characterArr[navigationLink.next]}`}}>Next</Link>
 
 
         </div>
