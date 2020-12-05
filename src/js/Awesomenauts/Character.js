@@ -26,14 +26,7 @@ const Character = (props) => {
             movement: 7.6,
             attack_type: "Melee",
             role: "Brawler",
-            abilities: [
-                'Area of Effect',
-                'Damage Over Time',
-                'Fly',
-                'Lifesteal',
-                'Shield',
-                'Slow'
-              ],
+            abilities: ['Area of Effect','Damage Over Time','Fly','Lifesteal','Shield','Slow'],
             unlocked_level: 18,
             bio: "lorem ipsum lol"
         },
@@ -85,14 +78,11 @@ const Character = (props) => {
 
             {/* TODO: TopGuides component but more than one */}
             <p>{"\n\n"}COMPONENT THAT TAKES DATA FROM USERS</p>
-            {/* TODO: Insert route here to other characters in order (need redux)*/}
-            {/* TODO: First serach for character then output links accordingly */}
-            {/* TODO: Two links to link to other character */}
-            {/* TODO: Insert Leave comment Section */}
             <Link to={{pathname: `/Awesomenauts/${characterArr[navigationLink.prev]}`}}>Prev</Link>
             <br />
             <br />
             <Link to={{pathname: `/Awesomenauts/${characterArr[navigationLink.next]}`}}>Next</Link>
+            {/* TODO: Insert Leave comment Section */}
 
 
         </div>
