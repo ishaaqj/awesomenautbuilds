@@ -1,5 +1,4 @@
 import React from 'react';
-import Route from 'react-router-dom';
 import Banner from './Banner';
 import Promo from './Promo';
 import TopGuide from './TopGuide';
