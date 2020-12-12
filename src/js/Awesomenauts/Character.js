@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import Comment from '../User/Comment';
-
+import axios from 'axios';
 
 const Character = (props) => {
 
-    const [state, useState] = useState({
+    const [state, setState] = useState({
+            // this render property is so the useEffect doesn't get caught in loop
+            render: true,
+            id: 0,
             name: "",
             health: {
                 regular: 0,
@@ -17,7 +20,35 @@ const Character = (props) => {
             abilities: [],
             unlocked_level: 0,
             bio: ""
+    });
+
+    useEffect (() => {
+        async function getCharacterAsync() {
+            const query = await axios.get(`/dbcharacter/Admiral Swiggins`);
+            const queryResults = query.data.results;
+            setState( {
+                render: false,
+                id: queryResults.id,
+                name: queryResults.name,
+                health:{
+                    regular: queryResults.health,
+                    alt: queryResults.althealth
+                },
+                movement: queryResults.movement,
+                attack_type: queryResults.attacktype,
+                role: queryResults.role,
+                abilities: queryResults.abilities,
+                unlocked_level: queryResults.unlockedlevel,
+                bio: queryResults.bio
+            })
+        };
+
+        // have to make async request to database in another function and not part of useEffect because of React docs
+        if (state.render) getCharacterAsync();
     })
+
+    // each character has an id which can be incremented or decremented for pagination.
+        // max size is 3, only has 3 characters as previously
     const characters = {
         Admiral_Swiggins: {
             name: "Admiral Swiggins",
@@ -44,6 +75,8 @@ const Character = (props) => {
     // case: current index is last page so go to first page
     if (characterIndex + 1 === characterArr.length) navigationLink.next = 0;
 
+    //2) change indexing to only include from database
+    //1) take info from database
 
 
     const charParam = characters[props.match.params.id];
@@ -51,7 +84,7 @@ const Character = (props) => {
     return (
         <div>
 
-            <h1>{charParam.name}</h1>
+            <h1>This is from database{state.name}</h1>
             <p><span>Health: </span> {`${charParam.health.regular} (${charParam.health.alt})`}</p>
             <p><span>Movement: </span>{charParam.movement}</p>
             <p><span>Attack Type: </span>{charParam.attack_type}</p>
