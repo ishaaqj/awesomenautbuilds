@@ -4,6 +4,20 @@ import Comment from '../User/Comment';
 
 
 const Character = (props) => {
+
+    const [state, useState] = useState({
+            name: "",
+            health: {
+                regular: 0,
+                alt: 0
+            },
+            movement: 0,
+            attack_type: "",
+            role: "",
+            abilities: [],
+            unlocked_level: 0,
+            bio: ""
+    })
     const characters = {
         Admiral_Swiggins: {
             name: "Admiral Swiggins",
@@ -16,32 +30,6 @@ const Character = (props) => {
             role: "Initiator",
             abilities: [ 'Stun', 'Blind', 'Shield', 'Damage Over Time', 'Area of Effect' ],
             unlocked_level: 0,
-            bio: "lorem ipsum lol"
-        },
-        Ayla: {
-            name: "Ayla",
-            health: {
-                regular: 1300,
-                alt: 1690
-            },
-            movement: 7.6,
-            attack_type: "Melee",
-            role: "Brawler",
-            abilities: ['Area of Effect','Damage Over Time','Fly','Lifesteal','Shield','Slow'],
-            unlocked_level: 18,
-            bio: "lorem ipsum lol"
-        },
-        Clunk: {
-            name: "Clunk",
-            health: {
-                regular: 1900,
-                alt: 2470
-            },
-            movement: 7.6,
-            attack_type: "Medium",
-            role: "Tank",
-            abilities: [ 'Lifesteal', 'Area of effect', 'Ensnare', 'Slow', 'Launch String' ],
-            unlocked_level: 3,
             bio: "lorem ipsum lol"
         }
     }
