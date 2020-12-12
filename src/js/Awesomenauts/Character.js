@@ -24,7 +24,7 @@ const Character = (props) => {
 
     useEffect (() => {
         async function getCharacterAsync() {
-            const query = await axios.get(`/dbcharacter/Admiral Swiggins`);
+            const query = await axios.get(`/dbcharacter/${props.match.params.id}`);
             const queryResults = query.data.results;
             setState( {
                 render: false,
@@ -44,7 +44,6 @@ const Character = (props) => {
         };
 
         // have to make async request to database in another function and not part of useEffect because of React docs
-        console.log(state)
         if (state.render) {
             console.log(`rendering axios request`)
             getCharacterAsync();
@@ -79,10 +78,6 @@ const Character = (props) => {
     // case: current index is last page so go to first page
     if (characterIndex + 1 === characterArr.length) navigationLink.next = 0;
 
-    //2) change indexing to only include from database
-    //1) take info from database
-
-
     const charParam = characters[props.match.params.id];
 
     return (
@@ -104,6 +99,7 @@ const Character = (props) => {
 
             {/* TODO: TopGuides component but more than one */}
             <p>{"\n\n"}COMPONENT THAT TAKES DATA FROM USERS</p>
+            {/* TODO: after route is changed update the react-router to send id in paramaters */}
             <Link to={{pathname: `/Awesomenauts/${characterArr[navigationLink.prev]}`}}>Prev</Link>
             <br />
             <br />
