@@ -1,4 +1,4 @@
-const pgpromise = require('pg-promise');
+const pgpromise = require('pg-promise')({});
 const config = require('../dbconfig.json');
 
 

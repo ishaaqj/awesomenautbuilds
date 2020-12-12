@@ -28,7 +28,8 @@
     "html-webpack-plugin": "^4.3.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "morgan": "^1.10.0"
   },
   "dependencies": {
     "axios": "^0.19.2",
