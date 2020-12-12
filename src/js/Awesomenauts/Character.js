@@ -44,7 +44,11 @@ const Character = (props) => {
         };
 
         // have to make async request to database in another function and not part of useEffect because of React docs
-        if (state.render) getCharacterAsync();
+        console.log(state)
+        if (state.render) {
+            console.log(`rendering axios request`)
+            getCharacterAsync();
+        }
     })
 
     // each character has an id which can be incremented or decremented for pagination.
@@ -84,18 +88,18 @@ const Character = (props) => {
     return (
         <div>
 
-            <h1>This is from database{state.name}</h1>
-            <p><span>Health: </span> {`${charParam.health.regular} (${charParam.health.alt})`}</p>
-            <p><span>Movement: </span>{charParam.movement}</p>
-            <p><span>Attack Type: </span>{charParam.attack_type}</p>
-            <p><span>Role: </span>{charParam.role}</p>
-            <p><span>Type of abilities: </span>{charParam.abilities.join(", ")}</p>
-            {charParam.unlocked_level != 0 ? <p><span>Unlocked: </span> {charParam.unlocked_level}</p> : null}
+            <h1>{state.name}</h1>
+            <p><span>Health: </span> {`${state.health.regular} (${state.health.alt})`}</p>
+            <p><span>Movement: </span>{state.movement}</p>
+            <p><span>Attack Type: </span>{state.attack_type}</p>
+            <p><span>Role: </span>{state.role}</p>
+            <p><span>Type of abilities: </span>{state.abilities.join(", ")}</p>
+            {state.unlocked_level != 0 ? <p><span>Unlocked: </span> {state.unlocked_level}</p> : null}
 
             <p>{"\n\n"} Dynamically generated pictures of packs the character uses</p>
 
-            <h1>{charParam.name}'s Bio:</h1>
-            <p>{charParam.bio}</p>
+            <h1>{state.name}'s Bio:</h1>
+            <p>{state.bio}</p>
 
 
             {/* TODO: TopGuides component but more than one */}
