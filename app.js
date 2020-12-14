@@ -10,6 +10,7 @@ app.use(bodyParser.json())
 app.use('/', express.static(path.join(__dirname, '/dist/')));
 
 app.get('/dbcharacter/:id', query.getCharacter);
+app.get('/dbcharacterCount', query.getCharacterCount);
 
 app.get('/*', (req, res) => {
     console.log(path.join(__dirname, '/dist/') + 'index.html');

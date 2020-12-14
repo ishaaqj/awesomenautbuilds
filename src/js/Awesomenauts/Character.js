@@ -19,12 +19,20 @@ const Character = (props) => {
             role: "",
             abilities: [],
             unlocked_level: 0,
-            bio: ""
+            bio: "",
+            // Although not strictly part of character component, nth character is stored in state to be later used inside redux store
+            nCharacters: 0
     });
+
+
 
     useEffect (() => {
         async function getCharacterAsync() {
-            const query = await axios.get(`/dbcharacter/${props.match.params.id}`);
+            // update the charcter count after the charcter data is loaded, info will most likely not change because the number of charcters is fixed. Therefore, use redux in future
+            let countQuery = await axios.get('/dbcharacterCount');
+            // nCharacters = countQuery.data.maxCount.max;
+
+            let query = await axios.get(`/dbcharacter/${props.match.params.id}`);
             const queryResults = query.data.results;
             setState( {
                 render: false,
@@ -39,46 +47,32 @@ const Character = (props) => {
                 role: queryResults.role,
                 abilities: queryResults.abilities,
                 unlocked_level: queryResults.unlockedlevel,
-                bio: queryResults.bio
+                bio: queryResults.bio,
+                nCharacters: countQuery.data.maxCount.max
             })
         };
 
-        // have to make async request to database in another function and not part of useEffect because of React docs
-        if (state.render) {
-            console.log(`rendering axios request`)
+        // have to make async request to database in another function and not part of useEffect strictly because of React docs; must implement nested function
+        if (state.render || props.match.params.id != state.id) {
             getCharacterAsync();
         }
+
     })
 
-    // each character has an id which can be incremented or decremented for pagination.
-        // max size is 3, only has 3 characters as previously
-    const characters = {
-        Admiral_Swiggins: {
-            name: "Admiral Swiggins",
-            health: {
-                regular: 1500,
-                alt: 1950
-            },
-            movement: 7.2,
-            attack_type: "Melee",
-            role: "Initiator",
-            abilities: [ 'Stun', 'Blind', 'Shield', 'Damage Over Time', 'Area of Effect' ],
-            unlocked_level: 0,
-            bio: "lorem ipsum lol"
-        }
+    // Variables to change the character link based on id
+    let [prev, next] = [state.id - 1, state.id + 1]
+
+    switch(state.id){
+        case 0:
+            // user at first character so previous is last of character list
+            prev = state.nCharacters - 1;
+            break;
+        case state.nCharacters -1:
+            // user at last character so next is beginning of character list
+            next = 0;
+            break;
     }
-    const characterArr = Object.keys(characters);
-    const characterIndex = characterArr.indexOf(props.match.params.id);
 
-    // Values to to link for routing to prev and next character
-    // Take case of prev and next link before if statement corrects for cases
-    let navigationLink = {prev: characterIndex - 1, next: characterIndex + 1}
-    // case: current index is first page in which case, go to last page
-    if (characterIndex === 0) navigationLink.prev = characterArr.length -1;
-    // case: current index is last page so go to first page
-    if (characterIndex + 1 === characterArr.length) navigationLink.next = 0;
-
-    const charParam = characters[props.match.params.id];
 
     return (
         <div>
@@ -99,11 +93,10 @@ const Character = (props) => {
 
             {/* TODO: TopGuides component but more than one */}
             <p>{"\n\n"}COMPONENT THAT TAKES DATA FROM USERS</p>
-            {/* TODO: after route is changed update the react-router to send id in paramaters */}
-            <Link to={{pathname: `/Awesomenauts/${characterArr[navigationLink.prev]}`}}>Prev</Link>
+            <Link to={{pathname: `/Awesomenauts/${prev}`}}>Prev</Link>
             <br />
             <br />
-            <Link to={{pathname: `/Awesomenauts/${characterArr[navigationLink.next]}`}}>Next</Link>
+            <Link to={{pathname: `/Awesomenauts/${next}`}}>Next</Link>
             <Comment />
 
 
