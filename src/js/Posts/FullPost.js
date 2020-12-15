@@ -1,6 +1,6 @@
 import React from 'react';
 import Comment from '../User/Comment';
-
+import axios from 'axios';
 const FullPost = (props) => {
 
     return (

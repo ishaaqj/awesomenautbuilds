@@ -25,4 +25,13 @@ const getCharacterCount = async (req, res) =>{
 
 }
 
-module.exports = {getCharacter, getCharacterCount}
+const getPosts = async (req, res) => {
+    try{
+        const query = await db.any(`select * from posts where id = ${req.params.id} and username = '${req.params.username}'`)
+        res.status(200).json({posts: query})
+    }catch(err){
+        console.log('error in getting posts', err);
+    }
+}
+
+module.exports = {getCharacter, getCharacterCount, getPosts}
