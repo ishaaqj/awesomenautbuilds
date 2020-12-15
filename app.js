@@ -9,10 +9,15 @@ app.use(morganLogger('dev'));
 app.use(bodyParser.json())
 app.use('/', express.static(path.join(__dirname, '/dist/')));
 
+
+
+// These are the routes the components use
 app.get('/dbcharacter/:id', query.getCharacter);
 app.get('/dbcharacterCount', query.getCharacterCount);
 app.get('/dbPost/:id/:username', query.getPosts);
 
+
+// This is the default route for any request
 app.get('/*', (req, res) => {
     console.log(path.join(__dirname, '/dist/') + 'index.html');
     res.sendFile(path.join(__dirname, '/dist/') + 'index.html');

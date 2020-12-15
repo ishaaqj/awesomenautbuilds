@@ -38,6 +38,7 @@ class HomePage extends React.Component{
             <div className="Homepage">
                 <Banner/>
                 <Link to="/Awesomenauts/0">Admiral Swiggins Characternaut </Link>
+                <Link to="/Post/0/asd">First Ever Post</Link>
                 {promoInfo.map(el => {
                     return <Promo picture={el.picture} title={el.title} description={el.description}/>
                 })}
