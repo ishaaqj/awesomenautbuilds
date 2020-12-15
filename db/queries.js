@@ -27,7 +27,19 @@ const getCharacterCount = async (req, res) =>{
 
 const getPosts = async (req, res) => {
     try{
-        const query = await db.any(`select * from posts where id = ${req.params.id} and username = '${req.params.username}'`)
+        let query;
+        switch(req.params.simplified){
+            case 'fullpost':
+                query = await db.any(`select * from posts where id = ${req.params.id} and username = '${req.params.username}'`);
+                break;
+            case 'simplepost':
+                query = await db.any(`select id, title, upvote, cost, instructions from posts where id = ${req.params.id} and username = '${req.params.username}'`);
+                break;
+            default:
+                query = [{result: 'simpified parameter not specified'}]
+        }
+
+
         res.status(200).json({posts: query[0]})
     }catch(err){
         console.log('error in getting posts', err);

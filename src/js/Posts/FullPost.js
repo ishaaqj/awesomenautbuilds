@@ -20,7 +20,7 @@ class FullPost extends React.Component {
 		// This will only be executed once so it is more appropriate to use Async calls in this instead of componentDidUpdate()
 		// No need for verification because it's rendered once
 		axios
-			.get(`/dbPost/${this.props.match.params.id}/${this.props.match.params.username}`)
+			.get(`/dbPost/${this.props.match.params.id}/${this.props.match.params.username}/fullpost`)
 			.then((res) => {
 				let query = res.data.posts;
 				this.setState({
@@ -51,23 +51,20 @@ class FullPost extends React.Component {
 						</div>
 						<div className="Header-UserInfo">
 							<p>By: {this.state.username} On: {this.state.date}</p>
-							<div className="Header-Stats"> {this.state.watchCount}  {this.state.upvote}  {this.state.cost} </div>
+							<div className="Header-Stats"> watch:{this.state.watchCount}  upvote:{this.state.upvote}  cost:{this.state.cost} </div>
 						</div>
 					</div>
 
-					<h2>Ex: {this.state.buildName} build</h2>
+					<h2>{this.state.buildName} build</h2>
 					<div>List of pictures</div>
 					<p>Good against - list of pictures</p>
-					<p>Good with - list of pictures</p>
+					<p>Good wi
+						th - list of pictures</p>
 					<p>Bad against - list of pictures</p>
 					<p>Bad With - list of pictures</p>
 					<h2>{this.state.buildName} Guide</h2>
 					<div>
-						<p>Some description</p>
-						<ol>
-							<li>Do one thing</li>
-							<li>Do another thing</li>
-						</ol>
+						<p>{this.state.instructions}</p>
 					</div>
 					<h2>Share this Guide</h2>
 					<div>Social media links</div>
@@ -76,7 +73,7 @@ class FullPost extends React.Component {
 				</div>
 				<div className="Browse links">consult the previous Characters component.js for reusable code</div>
 				<div className="Comments">
-					<h1>X thoughts on "The Master Tank of Black Holes"</h1>
+					<h1>X thoughts on "{this.state.title}"</h1>
 					<Comment />
 				</div>
 			</div>

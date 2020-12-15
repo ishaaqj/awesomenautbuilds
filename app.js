@@ -14,7 +14,7 @@ app.use('/', express.static(path.join(__dirname, '/dist/')));
 // These are the routes the components use
 app.get('/dbcharacter/:id', query.getCharacter);
 app.get('/dbcharacterCount', query.getCharacterCount);
-app.get('/dbPost/:id/:username', query.getPosts);
+app.get('/dbPost/:id/:username/:simplified', query.getPosts);
 
 
 // This is the default route for any request
