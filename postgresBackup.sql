@@ -63,11 +63,27 @@ CREATE TABLE public.posts (
     watchcount integer,
     upvote integer,
     cost integer,
-    username text
+    username text,
+    buildname text,
+    date date,
+    instructions text,
+    title text
 );
 
 
 ALTER TABLE public.posts OWNER TO mo;
+
+--
+-- Name: userpictures; Type: TABLE; Schema: public; Owner: mo
+--
+
+CREATE TABLE public.userpictures (
+    id text NOT NULL,
+    picture bytea
+);
+
+
+ALTER TABLE public.userpictures OWNER TO mo;
 
 --
 -- Name: users; Type: TABLE; Schema: public; Owner: mo
@@ -96,6 +112,8 @@ COPY public.charactericons (id, characterid, description, img) FROM stdin;
 
 COPY public.characters (id, name, health, althealth, movement, attacktype, role, abilities, unlockedlevel, bio) FROM stdin;
 0	Admiral Swiggins                                  	1500	1950	7.2	Melee                                             	Initiator                                         	{stun,Blind,Shield,"Damage Over Time","Area of Effect"}	0	lorem ipsum lol
+1	Ayla                                              	1300	1690	7.6	Melee                                             	Brawler                                           	{"Area of Effect","Damage Over Time",Fly,Lifesteal,Shield,Slow}	18	lorem ipsum lol
+2	Clunk                                             	1900	2470	7.6	Medium                                            	Tank                                              	{Lifesteal,"Area of effect",Ensnare,Slow,"Launch String"}	3	lorem ipsum lol
 \.
 
 
@@ -103,8 +121,16 @@ COPY public.characters (id, name, health, althealth, movement, attacktype, role,
 -- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: mo
 --
 
-COPY public.posts (id, watchcount, upvote, cost, username) FROM stdin;
-0	10	10	5000	awesomenautUser
+COPY public.posts (id, watchcount, upvote, cost, username, buildname, date, instructions, title) FROM stdin;
+0	10	10	2000	asd	SomeAwesomenauts Character	2020-12-14	throwsomething and then another	Some TitleName Guide
+\.
+
+
+--
+-- Data for Name: userpictures; Type: TABLE DATA; Schema: public; Owner: mo
+--
+
+COPY public.userpictures (id, picture) FROM stdin;
 \.
 
 
@@ -114,6 +140,7 @@ COPY public.posts (id, watchcount, upvote, cost, username) FROM stdin;
 
 COPY public.users (username, password, totalrating) FROM stdin;
 awesomenautUser	abc	0
+asd	asd	1
 \.
 
 
@@ -142,6 +169,14 @@ ALTER TABLE ONLY public.posts
 
 
 --
+-- Name: userpictures userpictures_pkey; Type: CONSTRAINT; Schema: public; Owner: mo
+--
+
+ALTER TABLE ONLY public.userpictures
+    ADD CONSTRAINT userpictures_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: mo
 --
 
@@ -163,6 +198,14 @@ ALTER TABLE ONLY public.charactericons
 
 ALTER TABLE ONLY public.posts
     ADD CONSTRAINT posts_username_fkey FOREIGN KEY (username) REFERENCES public.users(username);
+
+
+--
+-- Name: userpictures userpictures_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: mo
+--
+
+ALTER TABLE ONLY public.userpictures
+    ADD CONSTRAINT userpictures_id_fkey FOREIGN KEY (id) REFERENCES public.users(username);
 
 
 --
