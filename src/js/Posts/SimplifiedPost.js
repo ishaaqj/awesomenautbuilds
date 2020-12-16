@@ -8,7 +8,8 @@ const Post = (props) => {
 		title: '',
 		upvote: 0,
 		cost: 0,
-		instructions: ''
+		instructions: '',
+		username: ''
 	});
 
 	useEffect ( () => {
@@ -26,6 +27,7 @@ const Post = (props) => {
 				id: query.data.posts.id,
 				title: query.data.posts.title,
 				upvote: query.data.posts.upvote,
+				cost: query.data.posts.cost,
 				instructions: query.data.posts.instructions
 			});
 		};
@@ -37,9 +39,9 @@ const Post = (props) => {
 				<div className="User-picture">Image inserted here</div>
 				<h3>{state.title}</h3>
 				<div className="User-info">
-					<h2>{state.username}</h2>
-					<h2>{state.upvote}</h2>
-					<h2>{state.cost}</h2>
+					<h4>User: {props.username}</h4>
+					<h4>upvote: {state.upvote}</h4>
+					<h4>cost: {state.cost}</h4>
 				</div>
 			</div>
 			<p>{state.instructions}</p>

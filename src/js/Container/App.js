@@ -13,7 +13,6 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/Awesomenauts/:id" exact component={Character}/>
                     <Route path="/Post/:id/:username" exact component ={FullPost}/>
-                    <Route path="/SimplePost/:id/:username" exact component = {SimplifiedPost}/>
                     <Route path="/" exact component={HomePage}/>
                 </Switch>
             </div>
