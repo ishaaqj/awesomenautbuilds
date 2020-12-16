@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from './Banner';
 import Promo from './Promo';
 import TopGuide from './TopGuide';
+import SimplifiedPost from '../Posts/SimplifiedPost';
 import FeaturedGuides from '../User/UserGuides/FeaturedGuides';
 import {Link} from 'react-router-dom';
 
@@ -49,6 +50,7 @@ class HomePage extends React.Component{
                     picture={this.state.featured.picture} 
                     description={this.state.featured.post}/>
                 <FeaturedGuides/>
+                <SimplifiedPost id="0" username="asd"/>
             </div>
         )
     }

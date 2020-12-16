@@ -3,6 +3,7 @@ import HomePage from '../HomeInfo/Homepage';
 import {Switch, Route, Link} from 'react-router-dom';
 import Character from '../Awesomenauts/Character';
 import FullPost from '../Posts/FullPost';
+import SimplifiedPost from '../Posts/SimplifiedPost';
 
 
 class App extends React.Component {
@@ -12,6 +13,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/Awesomenauts/:id" exact component={Character}/>
                     <Route path="/Post/:id/:username" exact component ={FullPost}/>
+                    <Route path="/SimplePost/:id/:username" exact component = {SimplifiedPost}/>
                     <Route path="/" exact component={HomePage}/>
                 </Switch>
             </div>
