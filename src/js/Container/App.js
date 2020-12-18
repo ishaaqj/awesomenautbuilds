@@ -9,7 +9,7 @@ import SimplifiedPost from '../Posts/SimplifiedPost';
 class App extends React.Component {
     render(){
         return(
-            <div>
+            <div style={{background: "#2d2d2d", color: "#888888"}}>
                 <Switch>
                     <Route path="/Awesomenauts/:id" exact component={Character}/>
                     <Route path="/Post/:id/:username" exact component ={FullPost}/>

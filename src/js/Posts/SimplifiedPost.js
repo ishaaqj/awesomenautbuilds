@@ -5,14 +5,14 @@ import { withRouter } from 'react-router-dom';
 const Post = (props) => {
 	const [ state, setState ] = useState({
 		id: -1,
-		title: '',
+		title: 'Title not available',
 		upvote: 0,
 		cost: 0,
-		instructions: '',
+		instructions: 'Instructions not available',
 		username: ''
 	});
 
-	useEffect ( () => {
+	useEffect(() => {
 		const callForPost = async () => {
 			// try{
 			// 	if (typeof props.match === 'undefined') throw err;
@@ -33,18 +33,24 @@ const Post = (props) => {
 		};
 		if (state.id == -1) callForPost();
 	});
+
+	const smallPostStyling = {
+		margin: '5px'
+	};
+
 	return (
-		<div style={{border: 'solid black 2px'}}>
-			<div className="User">
-				<div className="User-picture">Image inserted here</div>
-				<h3>{state.title}</h3>
-				<div className="User-info">
-					<h4>User: {props.username}</h4>
-					<h4>upvote: {state.upvote}</h4>
-					<h4>cost: {state.cost}</h4>
-				</div>
+		<div style={{ border: 'solid black 2px', margin: '10px', display: 'flex', flexDirection: 'row', color: "white", background: "#222222"}}>
+			<div className="User-picture" style={{ margin: '10px' }}>
+				Image inserted here
 			</div>
-			<p>{state.instructions}</p>
+			<div className="User" style={{ display: 'flex', flexDirection: 'column' }}>
+				<div className="User-info" style={{ display: 'flex', flexDirection: 'row'}}>
+					<h3 style={{padding: "0px 10px 0px 0px", color: "#FBB963"}}>{state.title}</h3>
+					<h4 style={{padding: "0px 10px", color: "green"}}>upvote: {state.upvote}</h4>
+					<h4 style={{color: "yellow"}}>cost: {state.cost}</h4>
+				</div>
+				<p>{state.instructions}</p>
+			</div>
 		</div>
 	);
 };
